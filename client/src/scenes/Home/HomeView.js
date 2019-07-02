@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RecentlyPlayed from "../../components/RecentlyPlayed/RecentlyPlayed";
 
-const HomeView = ({audioList}) => {
+const HomeView = ({player}) => {
     return (
         <div>
 
             <RecentlyPlayed
-                audioList={audioList}
+                player={player}
             />
         </div>
     );
 };
 
 HomeView.propTypes = {
-    audioList: PropTypes.array,
+    player: PropTypes.object,
 };
 
 export default HomeView;

@@ -4,21 +4,20 @@ import HomeView from './HomeView';
 
 import {connect} from 'react-redux';
 
-const HomeContainer = ({audioList}) => {
+const HomeContainer = ({player}) => {
 
 
     return (
             <HomeView
-                audioList={audioList}
+                player={player}
             />
     );
 };
 
 HomeContainer.propTypes = {
-    audioList: PropTypes.array,
+    player: PropTypes.object,
 };
 
 export default connect(state => ({
-    audioList: state.audio.audioList,
-    currentAudio: state.audio.currentAudio
+    player: state.player,
 }))(HomeContainer);

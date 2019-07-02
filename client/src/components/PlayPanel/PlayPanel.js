@@ -14,13 +14,9 @@ import {
 } from "react-icons/io";
 
 const PlayPanel = ({
-    audioList,
-    currentAudio,
     isLoading,
     loop,
     audio,
-    handleMetadata,
-    handleTimeupdate,
     currentAudioObj,
     isPlaying,
     handlePlay,
@@ -35,7 +31,8 @@ const PlayPanel = ({
     setAudioDuration,
 
     togglePlayPanel,
-    showPlayPanel
+    showPlayPanel,
+    player
 }) => {
 
 
@@ -87,7 +84,7 @@ const PlayPanel = ({
                                 className="jp-play"
                                 onClick={handlePlay}
                             >
-                                {isPlaying
+                                {player.isPlaying
                                     ? <IoIosPause size={50} style={{transform: 'translateX(2px)'}} color={'white'}/>
                                     : <IoIosPlay size={50} style={{transform: 'translateX(5px)'}} color={'white'}/>
                                 }

@@ -142,7 +142,7 @@
   -o-transition: all 0.2s;
   transition: all 0.2s;
 }
-.ms_rcnt_box .ms_play_icon,
+
 .ms_genres_box .ms_play_icon {
   position: absolute;
   top: 50%;
@@ -154,61 +154,9 @@
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.ms_rcnt_box .ms_play_icon:after,
-.ms_genres_box .ms_play_icon:after {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.5);
-  top: 0;
-  left: 0;
-  content: "";
-  border-radius: 100%;
-  z-index: -1;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  opacity: 0;
-}
-.ms_rcnt_box .ms_play_icon:hover:after,
-.ms_genres_box .ms_play_icon:hover:after {
-  opacity: 1;
-}
-.ms_rcnt_box .ms_play_icon img,
-.ms_genres_box .ms_play_icon img {
-  display: inline-block;
-  line-height: 40px;
-  text-align: center;
-  text-decoration: none;
-  width: 40px;
-  height: 40px;
-  opacity: 0;
-  cursor: pointer;
-  -webkit-transform: scale(5);
-  -moz-transform: scale(5);
-  -ms-transform: scale(5);
-  -o-transform: scale(5);
-  transform: scale(5);
-  position: relative;
-  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
-  -o-transition: -o-transform 0.3s, opacity 0.3s;
-  transition: transform 0.3s, opacity 0.3s;
-  color: rgba(50, 50, 50, 0.9);
-}
+
 .ms_rcnt_box:hover .ms_box_overlay {
   top: 0;
-}
-.ms_rcnt_box:hover .ms_play_icon img,
-.ms_genres_box:hover .ms_play_icon img {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
 }
 .ms_more_icon {
   position: absolute;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {togglePlayPanel} from '../../modules/app/appActions';
-import {playNextAudio} from '../../modules/audio/audioAction';
+import {playNextAudio, playAudio} from '../../modules/audio/audioAction';
 
 import PlayPanel from './PlayPanel';
 
@@ -16,10 +16,10 @@ class PlayPanelContainer extends Component {
 
         this.state = {
             audio: null,
-            currentAudio: 0,
+            audioId: this.props.audioId,
             duration: 0,
             currentTime: 0,
-            isPlaying: false,
+            isPlaying: this.props.isPlaying,
             isLoading: true,
             volume: defaultVolume,
             loop: false
@@ -32,10 +32,10 @@ class PlayPanelContainer extends Component {
 
         if (audio.paused || audio.ended) {
             audio.play();
-            this.setState({ isPlaying: true });
+            this.setState({isPlaying: true});
         } else {
             audio.pause();
-            this.setState({ isPlaying: false });
+            this.setState({isPlaying: false});
         }
     };
 
@@ -100,7 +100,7 @@ class PlayPanelContainer extends Component {
                 });
                 if (audio.currentTime === audio.duration) {
                     audio.pause();
-                    this.setState({ isPlaying: false });
+                    this.setState({isPlaying: false});
                 }
             };
             audio.play();
@@ -109,39 +109,35 @@ class PlayPanelContainer extends Component {
     };
 
 
+    componentDidUpdate(prevProps, state) {
+        // console.log(this.props.audio, 'this.props');
+        // console.log(prevProps.audio);
 
+        if (!this.props.player.isPlaying) {
 
-    changeVolume = value => {
-        const {audio} = this.state;
-
-        this.setState({volume: value});
-        audio.volume = value / 100;
-    };
-
-    handleAudioLoop = () => {
-        const {audio, loop} = this.state;
-
-        if (loop) {
-            audio.loop = false;
-            this.setState({ loop: false });
-        } else {
-            audio.loop = true;
-            this.setState({ loop: true });
+            if (state.audio && !state.audio.paused) {
+                state.audio.pause();
+            }
         }
-    };
+
+        if (this.props.player.audioId !== prevProps.player.audioId) {
+            this.changeAudio(this.props.player.audioId);
+        }
+    }
 
 
-    setAudioDuration = currentTime => {
+
+    changeAudio = (audioId) => {
+        console.log(audioId);
         const {audio} = this.state;
-        this.setState({ currentTime });
-        audio.currentTime = currentTime;
-    };
+        audio.pause();
 
-    componentDidMount() {
-        const {currentAudio} = this.state;
+        const {player} = this.props;
+        const newAudio = player.audioList.filter(audio => audio.id === audioId);
 
         this.setState({
-            audio: new Audio(this.props.audioList[currentAudio].url),
+            isLoading: true,
+            audio: new Audio(newAudio[0].url),
         }, () => {
 
             const {audio} = this.state;
@@ -157,7 +153,75 @@ class PlayPanelContainer extends Component {
                 });
                 if (audio.currentTime === audio.duration) {
                     audio.pause();
-                    this.setState({ isPlaying: false });
+                    this.setState({isPlaying: false});
+                }
+            };
+
+            this.playAudio();
+
+        });
+
+    };
+
+
+    playAudio = () => {
+        const {playAudio} = this.props;
+        const {audio} = this.state;
+
+        playAudio();
+        audio.play();
+    };
+
+
+    changeVolume = value => {
+        const {audio} = this.state;
+
+        this.setState({volume: value});
+        audio.volume = value / 100;
+    };
+
+    handleAudioLoop = () => {
+        const {audio, loop} = this.state;
+
+        if (loop) {
+            audio.loop = false;
+            this.setState({loop: false});
+        } else {
+            audio.loop = true;
+            this.setState({loop: true});
+        }
+    };
+
+
+    setAudioDuration = currentTime => {
+        const {audio} = this.state;
+        this.setState({currentTime});
+        audio.currentTime = currentTime;
+    };
+
+    componentDidMount() {
+
+        const {audioList, audioId} = this.props.player;
+        const newAudio = audioList.filter(audio => audio.id === audioId);
+
+        this.setState({
+            audio: new Audio(newAudio[0].url),
+        }, () => {
+
+            const {audio} = this.state;
+            audio.onloadedmetadata = () => {
+                this.setState({
+                    isLoading: false,
+                    duration: audio.duration
+                })
+            };
+            audio.ontimeupdate = () => {
+                this.setState({
+                    currentTime: audio.currentTime
+                });
+                if (audio.currentTime === audio.duration) {
+                    audio.pause();
+                    this.setState({isPlaying: false});
                 }
             }
         });
@@ -165,13 +229,16 @@ class PlayPanelContainer extends Component {
 
 
     render() {
-        const {audio, isPlaying, volume, isLoading, duration, currentTime, currentAudio, loop} = this.state;
-        const {togglePlayPanel, showPlayPanel} = this.props;
+        const {audio, isPlaying, volume, isLoading, duration, currentTime, loop} = this.state;
+        const {togglePlayPanel, showPlayPanel, player} = this.props;
+
+
+
 
         return (
             <PlayPanel
                 isLoading={isLoading}
-                currentAudioObj={this.props.audioList[currentAudio]}
+                currentAudioObj={player.audioList.filter(audio => audio.id === player.audioId)[0]}
                 audio={audio}
                 isPlaying={isPlaying}
                 handlePlay={this.handlePlay}
@@ -189,6 +256,9 @@ class PlayPanelContainer extends Component {
                 togglePlayPanel={togglePlayPanel}
                 showPlayPanel={showPlayPanel}
 
+
+                player={player}
+
                 // audioPlayer={audioPlayer}
                 // handleMetadata={handleMetadata}
                 // handleTimeupdate={handleTimeupdate}
@@ -202,11 +272,11 @@ class PlayPanelContainer extends Component {
 }
 
 PlayPanelContainer.propTypes = {
-    audioList: PropTypes.array,
+    player: PropTypes.object,
     playNextAudio: PropTypes.func,
 };
 
 export default connect(state => ({
-    audioList: state.audio.audioList,
+    player: state.player,
     showPlayPanel: state.app.showPlayPanel
-}), {playNextAudio, togglePlayPanel})(PlayPanelContainer);
+}), {playNextAudio, togglePlayPanel, playAudio})(PlayPanelContainer);

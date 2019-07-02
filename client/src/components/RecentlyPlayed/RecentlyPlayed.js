@@ -8,7 +8,7 @@ import AudioItem from '../AudioItem/AudioItem'
 import './recentlyPlayer.scss'
 
 
-const RecentlyPlayed = ({audioList}) => {
+const RecentlyPlayed = ({player}) => {
     const params = {
         slidesPerView: 6,
         spaceBetween: 20,
@@ -59,11 +59,12 @@ const RecentlyPlayed = ({audioList}) => {
 
             <Swiper {...params}>
                 {
-                    audioList.map(audio => {
+                    player.audioList.map(audio => {
                         return (
                             <AudioItem
                                 key={audio.id}
                                 audio={audio}
+                                player={player}
                             />
                         )
                     })
@@ -77,7 +78,7 @@ const RecentlyPlayed = ({audioList}) => {
 };
 
 RecentlyPlayed.propTypes = {
-    audioList: PropTypes.array
+    player: PropTypes.object,
 };
 
 export default RecentlyPlayed;

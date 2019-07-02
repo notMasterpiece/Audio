@@ -50,7 +50,6 @@ const PlayPanelAudioInfo = ({
     isLoading,
 }) => {
 
-
     if (isLoading) {
         return (
             <AudioWrap>

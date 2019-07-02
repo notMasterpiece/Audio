@@ -7,6 +7,6 @@ import audio from './audio/';
 
 export default combineReducers({
     app,
-    audio,
+    player: audio,
     auth
 });
