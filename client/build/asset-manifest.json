@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bf7e69a3.chunk.css",
+    "main.js": "/static/js/main.a5032220.chunk.js",
+    "main.js.map": "/static/js/main.a5032220.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.e9188dbd.chunk.css": "/static/css/2.e9188dbd.chunk.css",
+    "static/js/2.d9c92bf6.chunk.js": "/static/js/2.d9c92bf6.chunk.js",
+    "static/js/2.d9c92bf6.chunk.js.map": "/static/js/2.d9c92bf6.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.dbc6adfbd884d9e83a18cd895ba70fd5.js": "/precache-manifest.dbc6adfbd884d9e83a18cd895ba70fd5.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.e9188dbd.chunk.css.map": "/static/css/2.e9188dbd.chunk.css.map",
+    "static/css/main.bf7e69a3.chunk.css.map": "/static/css/main.bf7e69a3.chunk.css.map",
+    "static/media/index.css": "/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/recentlyPlayer.scss": "/static/media/right_arrow.eebe9ad8.svg",
+    "static/media/loader.gif": "/static/media/loader.5b1de937.gif",
+    "static/media/more.svg": "/static/media/more.efc4fb7c.svg",
+    "static/media/play.svg": "/static/media/play.56d6ffb4.svg",
+    "static/media/playerPanel.scss": "/static/media/share.125ef3a2.svg",
+    "static/media/search.svg": "/static/media/search.a7e59b31.svg"
+  }
+}
