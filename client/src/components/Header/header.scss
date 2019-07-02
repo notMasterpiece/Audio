@@ -1,0 +1,194 @@
+/*==== Header Css Start ====*/
+.ms_content_wrapper {
+  position: relative;
+  margin-left: 160px;
+  margin-right: 80px;
+  padding-top: 80px;
+}
+.ms_header {
+  position: absolute;
+  background-color: #000;
+  padding: 20px 50px;
+  right: 0;
+  left: 80px;
+  top: 0;
+  z-index: 1000;
+  backface-visibility: hidden;
+}
+.ms_top_search {
+  max-width: 395px;
+  position: relative;
+  display: flex;
+  display: inline-block;
+  width: 100%;
+  float: left;
+}
+.search_icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 40px;
+  line-height: 45px;
+  background-color: #3bc8e7;
+  border-radius: 0px 5px 5px 0px;
+  padding: 0px 16px;
+  cursor: pointer;
+}
+.ms_top_search .form-control {
+  display: inline-block;
+  height: 40px;
+  padding: 0px 20px;
+  font-size: 15px;
+  line-height: 45px;
+  color: #777;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+.ms_top_trend {
+  float: left;
+  line-height: 40px;
+  padding-left: 50px;
+}
+.ms_top_trend a {
+  color: #fff;
+}
+.ms_top_right {
+  line-height: 40px;
+  display: flex;
+  place-content: flex-end;
+}
+.ms_top_right .ms_top_lang {
+  color: #ffffff;
+  text-transform: capitalize;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-right: 23px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+.ms_top_right .ms_top_lang:hover {
+  color: #3bc8e7;
+}
+.ms_top_right .ms_top_lang:after {
+  position: absolute;
+  background-color: #cdcdcd;
+  height: 30px;
+  width: 2px;
+  content: "";
+  right: 6px;
+  top: 6px;
+}
+.ms_btn {
+  background-color: #3bc8e7;
+  color: #fff;
+  height: 30px;
+  display: inline-block;
+  text-transform: capitalize;
+  width: 100px;
+  text-align: center;
+  line-height: 32px;
+  border-radius: 20px;
+  margin-left: 15px;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+.ms_btn:hover {
+  color: #ffffff;
+  box-shadow: 0px 0px 20px 0px #3bc8e7;
+}
+.ms_top_right .ms_top_lang img {
+  margin-left: 15px;
+  margin-right: 6px;
+}
+ul.ms_lang_box {
+  padding: 5px 0px;
+  margin: 0px;
+  list-style: none;
+  background-color: #3bc8e7;
+  width: 100%;
+  max-width: 120px;
+  line-height: initial;
+  position: absolute;
+  top: 100%;
+  opacity: 0;
+  border-radius: 4px;
+  transform: translateY(25px);
+  -webkit-transform: translateY(25px);
+  -moz-transform: translateY(25px);
+  -ms-transform: translateY(25px);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+.ms_top_right .ms_top_lang:hover ul.ms_lang_box {
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  opacity: 1;
+}
+ul.ms_lang_box li {
+  width: 100%;
+  display: block;
+}
+ul.ms_lang_box li a {
+  color: #ffffff;
+  width: 100%;
+  display: block;
+  padding: 5px 15px;
+}
+ul.ms_lang_box li a:hover {
+  padding-left: 20px;
+}
+ul.ms_lang_box:after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 2px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+/*====Banner Css Start====*/
+.ms-banner {
+  padding: 0px 0px 40px;
+}
+.ms_banner_img {
+  text-align: center;
+  max-width: 511px;
+  width: 100%;
+  float: left;
+}
+.ms_banner_text {
+  width: calc(100% - 511px);
+  float: left;
+  padding-top: 135px;
+}
+.ms_banner_text .ms_banner_btn .ms_btn {
+  height: 40px;
+  width: 100%;
+  margin-right: 25px;
+  line-height: 45px;
+  margin-left: 0;
+  max-width: 150px;
+  font-weight: 600;
+}
+.ms_banner_text h1 {
+  font-size: 45px;
+  font-weight: bold;
+  color: #fff;
+}
+.ms_banner_text p {
+  margin: 15px 0px 40px;
+  line-height: 30px;
+}

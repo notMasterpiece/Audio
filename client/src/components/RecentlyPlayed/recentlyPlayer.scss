@@ -1,0 +1,339 @@
+/*====Recent Music Slider====*/
+.ms_rcnt_slider {
+  position: relative;
+}
+.ms_heading {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+.ms_heading h1 {
+  font-size: 18px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  text-transform: capitalize;
+}
+.veiw_all {
+  float: right;
+  position: relative;
+  top: 0px;
+  right: 0px;
+}
+.veiw_all a {
+  color: #fff;
+  text-transform: capitalize;
+}
+.veiw_all a:hover {
+  color: #3bc8e7;
+}
+.ms_heading h1:after {
+  width: 100px;
+  height: 5px;
+  content: "";
+  position: absolute !important;
+  bottom: 0;
+  left: -15px;
+  z-index: 0;
+  background: -webkit-radial-gradient(50% 50%, ellipse closest-side, #3bc8e7, rgba(255, 42, 112, 0) 60%);
+  background: -moz-radial-gradient(50% 50%, ellipse closest-side, #3bc8e7, rgba(255, 42, 112, 0) 60%);
+  background: -ms-radial-gradient(50% 50%, ellipse closest-side, #3bc8e7, rgba(255, 42, 112, 0) 60%);
+  background: -o-radial-gradient(50% 50%, ellipse closest-side, #3bc8e7, rgba(255, 42, 112, 0) 60%);
+}
+.ms_rcnt_box {
+  text-align: center;
+  max-width: 255px;
+}
+.ms_rcnt_box_img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.ms_rcnt_box_img img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+}
+.ms_rcnt_box_text {
+  text-align: left;
+  margin-top: 20px;
+}
+.ms_rcnt_box_text h3,
+.w_top_song .w_tp_song_name h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.ms_rcnt_box_text h3 a,
+.w_top_song .w_tp_song_name h3 a {
+  color: #ffffff;
+}
+.ms_rcnt_box_text p,
+.w_top_song .w_tp_song_name p {
+  color: #dedede;
+  font-size: 14px;
+  margin: 0px;
+}
+.ms_rcnt_box_text h3 a:hover,
+.w_top_song .w_tp_song_name h3 a:hover {
+  color: #3bc8e7;
+}
+.ms_rcnt_slider .swiper-container {
+  margin: 0px 0px;
+}
+.slider_nav_next {
+  background-image: url(../../assets/images/svg/right_arrow.svg);
+  right: -40px;
+  left: auto;
+  position: absolute;
+  top: 52%;
+  width: 20px;
+  height: 20px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  background-size: 9px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.slider_nav_prev {
+  background-image: url(../../assets/images/svg/left_arrow.svg);
+  left: -40px;
+  right: auto;
+  position: absolute;
+  top: 52%;
+  width: 20px;
+  height: 20px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  background-size: 9px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next:focus,
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev:focus,
+.slider_nav_prev:focus,
+.slider_nav_next:focus {
+  outline: none;
+}
+.ms_releases_wrapper .slider_nav_prev,
+.ms_releases_wrapper .slider_nav_next {
+  top: 91%;
+  width: 14px;
+  height: 20px;
+  margin-top: -22px;
+  background-size: 7px 12px;
+  right: -40px;
+}
+.ms_box_overlay {
+  position: absolute;
+  border-radius: 10px;
+  background-image: -moz-linear-gradient( 90deg, rgb(22, 26, 46) 0%, rgb(237, 63, 179) 0%, rgb(59, 200, 231) 0%, rgba(32, 167, 196, 0) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(22, 26, 46) 0%, rgb(237, 63, 179) 0%, rgb(59, 200, 231) 0%, rgba(32, 167, 196, 0) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(22, 26, 46) 0%, rgb(237, 63, 179) 0%, rgb(59, 200, 231) 0%, rgba(32, 167, 196, 0) 100%);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 100%;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.ms_rcnt_box .ms_play_icon,
+.ms_genres_box .ms_play_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.ms_rcnt_box .ms_play_icon:after,
+.ms_genres_box .ms_play_icon:after {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  left: 0;
+  content: "";
+  border-radius: 100%;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  opacity: 0;
+}
+.ms_rcnt_box .ms_play_icon:hover:after,
+.ms_genres_box .ms_play_icon:hover:after {
+  opacity: 1;
+}
+.ms_rcnt_box .ms_play_icon img,
+.ms_genres_box .ms_play_icon img {
+  display: inline-block;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transform: scale(5);
+  -moz-transform: scale(5);
+  -ms-transform: scale(5);
+  -o-transform: scale(5);
+  transform: scale(5);
+  position: relative;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+  -o-transition: -o-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  color: rgba(50, 50, 50, 0.9);
+}
+.ms_rcnt_box:hover .ms_box_overlay {
+  top: 0;
+}
+.ms_rcnt_box:hover .ms_play_icon img,
+.ms_genres_box:hover .ms_play_icon img {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.ms_more_icon {
+  position: absolute;
+  top: -10%;
+  right: 20px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+}
+.ms_rcnt_box:hover .ms_more_icon,
+.ms_genres_box:hover .ms_more_icon {
+  top: 10px;
+}
+.ms_main_overlay {
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+}
+.ms_rcnt_box:hover .ms_main_overlay {
+  opacity: 1;
+}
+ul.more_option {
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  top: 5px;
+  right: 50px;
+  background-color: #fff;
+  max-width: 172px;
+  width: 100%;
+  list-style: none;
+  padding: 25px 0px 13px 20px;
+  text-align: left;
+  border-radius: 10px;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-15px);
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+}
+ul.more_option:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 9px;
+  right: -9px;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 9px solid #fff;
+}
+ul.more_option.open_option {
+  opacity: 1;
+  right: 50px;
+  visibility: visible;
+  transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+}
+ul.more_option li {
+  width: 100%;
+  display: block;
+}
+ul.more_option li a {
+  text-align: left !important;
+  color: #777777;
+  padding-bottom: 10px;
+  display: block;
+  font-size: 13px;
+}
+ul.more_option li a:hover,
+.ms_rcnt_box:hover .ms_rcnt_box_text h3 a {
+  color: #3bc8e7;
+}
+ul.more_option li a .opt_icon {
+  padding-right: 10px;
+}
+ul.more_option li a .opt_icon .icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(../../assets/images/svg/icon.svg);
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+ul.more_option li a .opt_icon .icon_fav {
+  background-position: -453px -4px;
+}
+ul.more_option li a .opt_icon .icon_queue {
+  background-position: -483px -4px;
+}
+ul.more_option li a .opt_icon .icon_dwn {
+  background-position: -513px -4px;
+}
+ul.more_option li a .opt_icon .icon_playlst {
+  background-position: -543px -4px;
+}
+ul.more_option li a .opt_icon .icon_share {
+  background-position: -573px -4px;
+}
+ul.more_option li a:hover .opt_icon .icon_fav {
+  background-position: -453px -33px;
+}
+ul.more_option li a:hover .opt_icon .icon_queue {
+  background-position: -483px -33px;
+}
+ul.more_option li a:hover .opt_icon .icon_dwn {
+  background-position: -513px -33px;
+}
+ul.more_option li a:hover .opt_icon .icon_playlst {
+  background-position: -543px -33px;
+}
+ul.more_option li a:hover .opt_icon .icon_share {
+  background-position: -573px -33px;
+}
