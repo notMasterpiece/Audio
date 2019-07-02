@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import HomeView from './HomeView';
 
@@ -15,7 +15,7 @@ const HomeContainer = ({audioList}) => {
 };
 
 HomeContainer.propTypes = {
-
+    audioList: PropTypes.array,
 };
 
 export default connect(state => ({

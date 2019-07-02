@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PlayAnimation from '../../components/AudioVizyalizations/SmallCssVizyalization/PlayAnimation';
 import loader from '../../assets/images/loader.gif';
-import {normalizeAudioCurentTime, formatSecondsAsTime} from "../../helpers/helpers";
+import {formatSecondsAsTime} from "../../helpers/helpers";
 
 
 const AudioWrap = styled.div`

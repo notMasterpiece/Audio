@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import "react-id-swiper/src/styles/scss/swiper.scss";
 import Swiper from 'react-id-swiper';
+import {Link} from 'react-router-dom';
 
-import MusikItem from '../../components/MusicItem/MusikItem'
+import AudioItem from '../AudioItem/AudioItem'
 import './recentlyPlayer.scss'
 
 
@@ -44,21 +45,23 @@ const RecentlyPlayed = ({audioList}) => {
                 spaceBetween: 0,
             }
         },
-    }
+    };
 
     return (
 
         <div className='ms_rcnt_slider'>
             <div className="ms_heading">
                 <h1>Recently Played</h1>
-                <span className="veiw_all"><a href="#">view more</a></span>
+                <span className="veiw_all">
+                    <Link to="/more">view more</Link>
+                </span>
             </div>
 
             <Swiper {...params}>
                 {
                     audioList.map(audio => {
                         return (
-                            <MusikItem
+                            <AudioItem
                                 key={audio.id}
                                 audio={audio}
                             />

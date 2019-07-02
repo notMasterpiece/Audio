@@ -3,7 +3,7 @@ import './App.css';
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import LeftMenu from "./components/LeftMenu/LeftMenu";
+import LeftMenu from "./components/LeftMenu/LeftMenuContainer";
 import PlayPanel from "./components/PlayPanel/PlayPanelContainer";
 
 
@@ -25,7 +25,7 @@ function App() {
 
                 <Header/>
 
-                <LeftMenu/>
+                <LeftMenu />
                 <div className="ms_content_wrapper">
 
                     <Switch>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {togglePlayPanel} from '../../modules/app/appActions';
 import {playNextAudio} from '../../modules/audio/audioAction';
 
 import PlayPanel from './PlayPanel';
@@ -165,8 +166,7 @@ class PlayPanelContainer extends Component {
 
     render() {
         const {audio, isPlaying, volume, isLoading, duration, currentTime, currentAudio, loop} = this.state;
-
-        console.log(this.state);
+        const {togglePlayPanel, showPlayPanel} = this.props;
 
         return (
             <PlayPanel
@@ -185,6 +185,9 @@ class PlayPanelContainer extends Component {
                 loop={loop}
                 handleAudioLoop={this.handleAudioLoop}
                 setAudioDuration={this.setAudioDuration}
+
+                togglePlayPanel={togglePlayPanel}
+                showPlayPanel={showPlayPanel}
 
                 // audioPlayer={audioPlayer}
                 // handleMetadata={handleMetadata}
@@ -205,52 +208,5 @@ PlayPanelContainer.propTypes = {
 
 export default connect(state => ({
     audioList: state.audio.audioList,
-}), {playNextAudio})(PlayPanelContainer);
-
-
-
-
-
-
-
-// const PlayPanelContainer = ({audioList, currentAudio}) => {
-//
-//
-//     const [loop, setLoop] = useState(false);
-//
-//
-
-
-//
-//
-//     const handleTimeupdate = () => {
-//         setCurrentTrackMoment(Math.floor(audioPlayer.current.currentTime));
-//         setProgressBarWidth(
-//             (audioPlayer.current.currentTime / audioPlayer.current.duration) * 100 + '%'
-//         );
-//
-//     };
-//
-//
-//
-//     return (
-//         <PlayPanel
-//             audioList={audioList}
-//             loop={loop}
-//             audioPlayer={audioPlayer}
-//             handleMetadata={handleMetadata}
-//             handleTimeupdate={handleTimeupdate}
-//             isPlaying={isPlaying}
-//             handlePlay={handlePlay}
-//             volume={volume}
-//             defaultValue={defaultValue}
-//             changeVolume={changeVolume}
-//             handleAudioLoop={handleAudioLoop}
-//             setAudioDuration={setAudioDuration}
-//             currentTrackMoment={currentTrackMoment}
-//             currentTrackDuration={currentTrackDuration}
-//             currentAudio={currentAudio}
-//         />
-//     );
-//
-// };
+    showPlayPanel: state.app.showPlayPanel
+}), {playNextAudio, togglePlayPanel})(PlayPanelContainer);

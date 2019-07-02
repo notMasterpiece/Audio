@@ -14,7 +14,7 @@ const HomeView = ({audioList}) => {
 };
 
 HomeView.propTypes = {
-
+    audioList: PropTypes.array,
 };
 
 export default HomeView;

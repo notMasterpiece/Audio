@@ -1,13 +1,3 @@
-export const normalizeAudioCurentTime = time => {
-    if (time === 0) {
-        return '0:00';
-    }
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time - minutes * 60);
-    return `${minutes}:${(seconds >= 10) ? seconds : '0' + seconds}`;
-};
-
-
 export const formatSecondsAsTime = time => {
     var hr  = Math.floor(time / 3600);
     var min = Math.floor((time - (hr * 3600))/60);

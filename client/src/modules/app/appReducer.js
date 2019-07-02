@@ -2,6 +2,8 @@ import {handleActions} from '@letapp/redux-actions';
 import * as actions from './appActions';
 
 const INITIAL_STATE = {
+    fullLeftMenu: false,
+    showPlayPanel: true,
     isLoading: true,
     isError: false,
     error: null
@@ -25,4 +27,15 @@ export default handleActions({
         isError: true,
         error: action.payload.error
     }),
+
+
+    [actions.toggleLeftMenu] : (state) => ({
+        ...state,
+        fullLeftMenu: !state.fullLeftMenu
+    }),
+    [actions.togglePlayPanel] : (state) => ({
+        ...state,
+        showPlayPanel: !state.showPlayPanel
+    }),
+
 }, INITIAL_STATE);

@@ -33,6 +33,10 @@ const PlayPanelVolume = ({volume, changeVolume, defaultValue}) => {
     );
 };
 
-PlayPanelVolume.propTypes = {};
+PlayPanelVolume.propTypes = {
+    volume: PropTypes.number.isRequired,
+    changeVolume: PropTypes.func.isRequired,
+    defaultValue: PropTypes.number.isRequired,
+};
 
 export default PlayPanelVolume;

@@ -4,10 +4,13 @@ import {Link} from 'react-router-dom';
 
 import './LeftMenu.scss';
 
-const LeftMenu = props => {
+const LeftMenuView = ({toggleLeftMenu, fullLeftMenu}) => {
     return (
-        <div className="ms_sidemenu_wrapper">
-            <div className="ms_nav_close">
+        <div className={`ms_sidemenu_wrapper ${fullLeftMenu ? 'open_menu' : ''}`} >
+            <div
+                className="ms_nav_close"
+                onClick={toggleLeftMenu}
+            >
                 <i className="fa fa-angle-right" aria-hidden="true"/>
             </div>
             <div className="ms_sidemenu_inner">
@@ -36,15 +39,6 @@ const LeftMenu = props => {
                                             discover
                                         </span>
                                     </Link>
-                                </li>
-                                <li><a href="album.html" title="Albums">
-						<span className="nav_icon">
-							<span className="icon icon_albums"/>
-						</span>
-                                    <span className="nav_text">
-							albums
-						</span>
-                                </a>
                                 </li>
                                 <li><a href="artist.html" title="Artists">
 						<span className="nav_icon">
@@ -167,6 +161,8 @@ const LeftMenu = props => {
     );
 };
 
-LeftMenu.propTypes = {};
+LeftMenuView.propTypes = {
+    toggleLeftMenu: PropTypes.func.isRequired,
+};
 
-export default LeftMenu;
+export default LeftMenuView;

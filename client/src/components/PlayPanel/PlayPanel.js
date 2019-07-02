@@ -27,14 +27,15 @@ const PlayPanel = ({
     handlePlayNext,
     handlePlayPrev,
     volume,
-                       defaultVolume,
+    defaultVolume,
     duration,
     changeVolume,
     currentTime,
     handleAudioLoop,
     setAudioDuration,
-    currentTrackMoment,
-    currentTrackDuration
+
+    togglePlayPanel,
+    showPlayPanel
 }) => {
 
 
@@ -42,10 +43,20 @@ const PlayPanel = ({
 
 
     return (
-        <div className="ms_player_wrapper">
-            <div className="ms_player_close">
-                <i className="fa fa-angle-up" aria-hidden="true"/>
+        <div
+            className={`ms_player_wrapper ${showPlayPanel ? '' : 'close_player'}`}
+        >
+
+            <div
+                className="ms_player_close"
+                onClick={togglePlayPanel}
+            >
+                <i
+                    className="fa fa-angle-up"
+                    aria-hidden="true"
+                />
             </div>
+
             <div className="player_mid">
                 <div className="audio-player">
 

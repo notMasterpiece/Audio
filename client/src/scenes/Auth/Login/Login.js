@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const Login = props => {
     return (
@@ -9,8 +9,6 @@ const Login = props => {
     );
 };
 
-Login.propTypes = {
-
-};
+// Login.propTypes = {};
 
 export default Login;

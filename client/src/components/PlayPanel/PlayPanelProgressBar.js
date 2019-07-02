@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Slider  from 'rc-slider';
 import styled from 'styled-components';
 
-import {normalizeAudioCurentTime} from '../../helpers/helpers';
+import {formatSecondsAsTime} from '../../helpers/helpers'
+
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
@@ -13,19 +14,19 @@ const PlayPanelProgressBar = ({audio, setAudioDuration}) => {
 
     return (
         <ProgresWrap>
-            <Slider
+            <SliderWithTooltip
                 value={ audio.currentTime }
                 max={ audio.duration }
                 step={0.01}
                 onChange={ value => setAudioDuration(value) }
-                // tipFormatter={value => normalizeAudioCurentTime(value)}
+                tipFormatter={value => formatSecondsAsTime(value)}
             />
         </ProgresWrap>
     );
 };
 
 PlayPanelProgressBar.propTypes = {
-
+    audio: PropTypes.object.isRequired,
 };
 
 

@@ -28,8 +28,13 @@
   -o-transition: all 0.3s ease-in-out;
 }
 .ms_player_wrapper.close_player {
-  bottom: -75px;
+  bottom: -100px;
 }
+.ms_player_wrapper.close_player .rc-slider {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .ms_player_wrapper.close_player .ms_player_close i {
   position: relative;
   top: 11px;
