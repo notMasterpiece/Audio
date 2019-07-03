@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import "react-id-swiper/src/styles/scss/swiper.scss";
 import Swiper from 'react-id-swiper';
-import {Link} from 'react-router-dom';
 
 import AudioItem from '../AudioItem/AudioItem'
 import './recentlyPlayer.scss'
@@ -48,30 +47,36 @@ const RecentlyPlayed = ({player}) => {
     };
 
     return (
+        <Fragment>
+            {
+                player.playerLists.map(list => (
+                    <div
+                        key={list.id}
+                        className='ms_rcnt_slider'
+                    >
+                        <div className="ms_heading">
+                            <h1>{list.name}</h1>
+                        </div>
 
-        <div className='ms_rcnt_slider'>
-            <div className="ms_heading">
-                <h1>Recently Played</h1>
-                <span className="veiw_all">
-                    <Link to="/more">view more</Link>
-                </span>
-            </div>
+                        <Swiper {...params}>
+                            {
+                                list.audioList.map(audio => {
+                                    return (
+                                        <AudioItem
+                                            key={audio.id}
+                                            listId={list.id}
+                                            audio={audio}
+                                            player={player}
+                                        />
+                                    )
+                                })
+                            }
+                        </Swiper>
 
-            <Swiper {...params}>
-                {
-                    player.audioList.map(audio => {
-                        return (
-                            <AudioItem
-                                key={audio.id}
-                                audio={audio}
-                                player={player}
-                            />
-                        )
-                    })
-                }
-            </Swiper>
-
-        </div>
+                    </div>
+                ))
+            }
+        </Fragment>
 
 
     )

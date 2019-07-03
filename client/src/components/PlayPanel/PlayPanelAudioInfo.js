@@ -45,7 +45,7 @@ const AudioInfo = styled.div`
 const PlayPanelAudioInfo = ({
     duration,
     currentTime,
-    isPlaying,
+    player,
     currentAudioObj,
     isLoading,
 }) => {
@@ -68,7 +68,7 @@ const PlayPanelAudioInfo = ({
             <AudioImage>
                 <Fragment>
                     <img src={currentAudioObj.image} alt={currentAudioObj.title}/>
-                    {isPlaying && <PlayAnimation/>}
+                    {player.isPlaying && <PlayAnimation/>}
                 </Fragment>
             </AudioImage>
             <AudioInfo>

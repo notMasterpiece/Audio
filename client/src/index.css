@@ -13,7 +13,7 @@ body {
   font-weight: 400;
   line-height: 24px;
   color: #777777;
-  background-color: #000;
+  background-color: rgb(27, 31, 35);
 }
 /*====Normal Css Start====*/
 h1,
@@ -32,10 +32,10 @@ h6,
   font-family: inherit;
   font-weight: 600;
   line-height: 1.2;
-  color: #3bc8e7;
+  color: rgb(33, 136, 255);
 }
 a {
-  color: #3bc8e7;
+  color: rgb(33, 136, 255);
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;

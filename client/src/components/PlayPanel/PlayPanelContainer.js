@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {togglePlayPanel} from '../../modules/app/appActions';
-import {playNextAudio, playAudio} from '../../modules/audio/audioAction';
+import {playNextAudio, playPrevAudio, playAudio, audioLoaded} from '../../modules/audio/audioAction';
 
 import PlayPanel from './PlayPanel';
+
+import audio from '../../audio';
 
 const defaultVolume = 60;
 
@@ -19,8 +21,6 @@ class PlayPanelContainer extends Component {
             audioId: this.props.audioId,
             duration: 0,
             currentTime: 0,
-            isPlaying: this.props.isPlaying,
-            isLoading: true,
             volume: defaultVolume,
             loop: false
         };
@@ -28,139 +28,79 @@ class PlayPanelContainer extends Component {
 
 
     handlePlay = () => {
-        const {audio} = this.state;
-
-        if (audio.paused || audio.ended) {
-            audio.play();
-            this.setState({isPlaying: true});
-        } else {
-            audio.pause();
-            this.setState({isPlaying: false});
-        }
+        // const {audio} = this.state;
+        //
+        // if (audio.paused || audio.ended) {
+        //     audio.play();
+        //     this.setState({isPlaying: true});
+        // } else {
+        //     audio.pause();
+        //     this.setState({isPlaying: false});
+        // }
     };
 
 
-    // getMetadata = () => {
-    //     const {audio} = this.state;
-    //     const duration = Math.floor(audio.duration);
-    //     console.log(duration);
-    // };
-
-
     handlePlayNext = () => {
-        const {currentAudio} = this.state;
-        this.setState({
-            isLoading: true,
-            currentAudio: currentAudio + 1
-        }, () => {
 
-            const {audio, currentAudio} = this.state;
-            audio.src = this.props.audioList[currentAudio].url;
-
-            audio.onloadedmetadata = () => {
-                console.log(audio.duration);
-                this.setState({
-                    isLoading: false,
-                    isPlaying: true,
-                    duration: audio.duration
-                })
-            };
-            audio.ontimeupdate = () => {
-                this.setState({
-                    currentTime: audio.currentTime
-                })
-            };
-            audio.play();
-        });
-
+        this.props.playNextAudio();
     };
 
 
     handlePlayPrev = () => {
-        const {currentAudio} = this.state;
-        this.setState({
-            isLoading: true,
-            currentAudio: currentAudio - 1
-        }, () => {
 
-            const {audio, currentAudio} = this.state;
-            audio.src = this.props.audioList[currentAudio].url;
-
-            audio.onloadedmetadata = () => {
-                console.log(audio.duration);
-                this.setState({
-                    isLoading: false,
-                    isPlaying: true,
-                    duration: audio.duration
-                })
-            };
-            audio.ontimeupdate = () => {
-                this.setState({
-                    currentTime: audio.currentTime
-                });
-                if (audio.currentTime === audio.duration) {
-                    audio.pause();
-                    this.setState({isPlaying: false});
-                }
-            };
-            audio.play();
-        });
+        this.props.playPrevAudio();
 
     };
 
 
     componentDidUpdate(prevProps, state) {
-        // console.log(this.props.audio, 'this.props');
-        // console.log(prevProps.audio);
+        const {player} = this.props;
+        this.changeAudioState(player);
 
-        if (!this.props.player.isPlaying) {
-
-            if (state.audio && !state.audio.paused) {
-                state.audio.pause();
-            }
+        if(prevProps.player.audioId !== this.props.player.audioId) {
+            audio.pause();
+            audio.init(this.getCurrentAudio());
+            audio.loadedmetadata(duration => {
+                console.log(duration);
+                audio.play();
+            });
         }
+        console.log(prevProps);
+        console.log(this.props);
 
-        if (this.props.player.audioId !== prevProps.player.audioId) {
-            this.changeAudio(this.props.player.audioId);
-        }
     }
 
 
-
-    changeAudio = (audioId) => {
-        console.log(audioId);
-        const {audio} = this.state;
-        audio.pause();
+    changeAudioState = () => {
 
         const {player} = this.props;
-        const newAudio = player.audioList.filter(audio => audio.id === audioId);
+        const {isPlaying} = player;
 
-        this.setState({
-            isLoading: true,
-            audio: new Audio(newAudio[0].url),
-        }, () => {
+        if (isPlaying) {
+            // console.log('play');
 
-            const {audio} = this.state;
-            audio.onloadedmetadata = () => {
-                this.setState({
-                    isLoading: false,
-                    duration: audio.duration
-                })
-            };
-            audio.ontimeupdate = () => {
-                this.setState({
-                    currentTime: audio.currentTime
+
+
+            if (!audio.isAudioInitialization() ) {
+                audio.init(this.getCurrentAudio());
+                audio.loadedmetadata(duration => {
+                    console.log(duration);
+                    audio.play();
                 });
-                if (audio.currentTime === audio.duration) {
-                    audio.pause();
-                    this.setState({isPlaying: false});
+            } else {
+                if(player.isLoading) {
+                    this.props.audioLoaded();
                 }
-            };
+                audio.play();
+            }
 
-            this.playAudio();
 
-        });
 
+
+        } else {
+            // console.log('pause');
+            audio.pause();
+        }
     };
 
 
@@ -199,46 +139,35 @@ class PlayPanelContainer extends Component {
         audio.currentTime = currentTime;
     };
 
+    getCurrentAudio = () => {
+        const {player} = this.props;
+        const {currentPlaylistId, playerLists, audioId} = player;
+
+        const currentPlayerList = playerLists.filter(list => list.id === currentPlaylistId)[0].audioList;
+        const currentAudio = currentPlayerList.filter(audio => audio.id === audioId)[0];
+
+        return currentAudio;
+    };
+
     componentDidMount() {
 
-        const {audioList, audioId} = this.props.player;
-        const newAudio = audioList.filter(audio => audio.id === audioId);
+        audio.init(this.getCurrentAudio());
 
-        this.setState({
-            audio: new Audio(newAudio[0].url),
-        }, () => {
-
-            const {audio} = this.state;
-            audio.onloadedmetadata = () => {
-                this.setState({
-                    isLoading: false,
-                    duration: audio.duration
-                })
-            };
-            audio.ontimeupdate = () => {
-                this.setState({
-                    currentTime: audio.currentTime
-                });
-                if (audio.currentTime === audio.duration) {
-                    audio.pause();
-                    this.setState({isPlaying: false});
-                }
-            }
+        audio.loadedmetadata(duration => {
+            console.log(duration);
+            this.props.audioLoaded()
         });
     }
 
 
     render() {
-        const {audio, isPlaying, volume, isLoading, duration, currentTime, loop} = this.state;
+        const {audio, isPlaying, volume, duration, currentTime, loop} = this.state;
         const {togglePlayPanel, showPlayPanel, player} = this.props;
-
-
-
 
         return (
             <PlayPanel
-                isLoading={isLoading}
-                currentAudioObj={player.audioList.filter(audio => audio.id === player.audioId)[0]}
+                isLoading={player.isLoading}
+                currentAudioObj={this.getCurrentAudio()}
                 audio={audio}
                 isPlaying={isPlaying}
                 handlePlay={this.handlePlay}
@@ -258,14 +187,7 @@ class PlayPanelContainer extends Component {
 
 
                 player={player}
-
-                // audioPlayer={audioPlayer}
-                // handleMetadata={handleMetadata}
-                // handleTimeupdate={handleTimeupdate}
-
-                // currentTrackMoment={currentTrackMoment}
-                // currentTrackDuration={currentTrackDuration}
-                // currentAudio={currentAudio}
+                playNextAudio={playNextAudio}
             />
         );
     }
@@ -276,7 +198,7 @@ PlayPanelContainer.propTypes = {
     playNextAudio: PropTypes.func,
 };
 
-export default connect(state => ({
+export default connect((state) => ({
     player: state.player,
     showPlayPanel: state.app.showPlayPanel
-}), {playNextAudio, togglePlayPanel, playAudio})(PlayPanelContainer);
+}), {playNextAudio, playPrevAudio, togglePlayPanel, playAudio, audioLoaded})(PlayPanelContainer);

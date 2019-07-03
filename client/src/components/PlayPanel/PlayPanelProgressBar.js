@@ -26,7 +26,7 @@ const PlayPanelProgressBar = ({audio, setAudioDuration}) => {
 };
 
 PlayPanelProgressBar.propTypes = {
-    audio: PropTypes.object.isRequired,
+    audio: PropTypes.object,
 };
 
 

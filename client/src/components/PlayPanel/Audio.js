@@ -1,0 +1,10 @@
+class Audio {
+    constructor() {
+
+    }
+
+
+    init () {
+
+    }
+}

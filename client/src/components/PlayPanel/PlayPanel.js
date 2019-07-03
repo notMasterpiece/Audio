@@ -18,7 +18,6 @@ const PlayPanel = ({
     loop,
     audio,
     currentAudioObj,
-    isPlaying,
     handlePlay,
     handlePlayNext,
     handlePlayPrev,
@@ -32,11 +31,9 @@ const PlayPanel = ({
 
     togglePlayPanel,
     showPlayPanel,
-    player
+
+    player,
 }) => {
-
-
-    if(!audio) return null;
 
 
     return (
@@ -66,7 +63,7 @@ const PlayPanel = ({
 
                         <PlayPanelAudioInfo
                             isLoading={isLoading}
-                            isPlaying={isPlaying}
+                            player={player}
                             duration={duration}
                             currentTime={currentTime}
                             currentAudioObj={currentAudioObj}

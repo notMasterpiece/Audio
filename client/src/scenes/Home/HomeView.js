@@ -4,12 +4,9 @@ import RecentlyPlayed from "../../components/RecentlyPlayed/RecentlyPlayed";
 
 const HomeView = ({player}) => {
     return (
-        <div>
-
             <RecentlyPlayed
                 player={player}
             />
-        </div>
     );
 };
 
