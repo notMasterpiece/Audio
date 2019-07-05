@@ -3,23 +3,20 @@ import PropTypes from 'prop-types';
 import Slider  from 'rc-slider';
 import styled from 'styled-components';
 
-import {formatSecondsAsTime} from '../../helpers/helpers'
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
-const PlayPanelProgressBar = ({audio, setAudioDuration}) => {
-
-    if (!audio) return null;
+const PlayPanelProgressBar = ({duration, currentTime}) => {
 
     return (
         <ProgresWrap>
             <SliderWithTooltip
-                value={ audio.currentTime }
-                max={ audio.duration }
+                value={ currentTime }
+                max={ duration }
                 step={0.01}
-                onChange={ value => setAudioDuration(value) }
-                tipFormatter={value => formatSecondsAsTime(value)}
+                // onChange={ value => setAudioDuration(value) }
+                // tipFormatter={value => formatSecondsAsTime(currentTime)}
             />
         </ProgresWrap>
     );

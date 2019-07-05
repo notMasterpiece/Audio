@@ -29,13 +29,13 @@ const playerLists = [
             {
                 id: 4121212,
                 title: 'Summer_Mix_2019_Best_Of_Deep_House 1:00:00',
-                image: 'https://lh3.googleusercontent.com/dbpP09Az15spCJMIsb-mDtqHxjhteRGcb2YRtYFCWb3CkJQCKvCDr90LUaTxhNiCIiDrRusN2g=w544-h544-l90-rj',
+                image: 'https://lh3.googleusercontent.com/T3x2pU8D34XtohYNjgYNihSSmozUny1eKUooZp7N06gIfp3FEgBxtER-0H0sl4tAulh_GCjH9MEStF7i4w=w544-h544-l90-rj',
                 url: 'https://res.cloudinary.com/g-r-a-w-d-a-n-i-n/video/upload/v1562068843/audio/MEGA_HITS_2019_Summer_Mix_2019_Best_Of_Deep_House_Sessions_Music_Chill_Out_Mix_17.mp3'
             },
             {
                 id: 1067,
                 title: 'Лучшая Музыка Июль 2019 1:00:00',
-                image: 'https://lh3.googleusercontent.com/dbpP09Az15spCJMIsb-mDtqHxjhteRGcb2YRtYFCWb3CkJQCKvCDr90LUaTxhNiCIiDrRusN2g=w544-h544-l90-rj',
+                image: 'https://lh3.googleusercontent.com/AruwUWeJsesWkYHehzJNkXKgfAKbXE7_L6LLQPGuZcm1m7xOoPmeiFw0pBE6Wm4Df9aZFK80C8p-pLcgMQ=w544-h544-l90-rj',
                 url: 'https://res.cloudinary.com/g-r-a-w-d-a-n-i-n/video/upload/v1562050702/audio/%D0%9B%D1%83%D1%87%D1%88%D0%B0%D1%8F_%D0%9C%D1%83%D0%B7%D1%8B%D0%BA%D0%B0_%D0%98%D1%8E%D0%BB%D1%8C_2019_%D0%97%D0%B0%D1%80%D1%83%D0%B1%D0%B5%D0%B6%D0%BD%D1%8B%D0%B5_%D0%BF%D0%B5%D1%81%D0%BD%D0%B8_%D0%A5%D0%B8%D1%82%D1%8B_%D0%9F%D0%BE%D0%BF%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B5_%D0%9F%D0%B5%D1%81%D0%BD%D0%B8_%D0%A1%D0%BB%D1%83%D1%88%D0%B0%D1%82%D1%8C_%D0%91%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE_2019.mp3'
             }
         ]
@@ -122,6 +122,7 @@ const INITIAL_STATE = {
     playerLists,
     audioId: 30342433434,
     currentPlaylistId: 13434,
+    volume: 64,
     isPlaying: false,
     isLoading: false,
     isError: false,
@@ -160,7 +161,9 @@ export default handleActions({
 
         return ({
           ...state,
-          audioId: nextItem.id
+          audioId: nextItem.id,
+          isLoading: true,
+
       })
 
     },
@@ -181,12 +184,13 @@ export default handleActions({
 
         return ({
           ...state,
-          audioId: prevItem.id
+          audioId: prevItem.id,
+
       })
     },
 
 
-    [actions.playAudio] : (state, action) => ({
+    [actions.playAudioById] : (state, action) => ({
         ...state,
         isPlaying: true,
         isLoading: true,
@@ -194,14 +198,26 @@ export default handleActions({
         currentPlaylistId: action.payload.listId
     }),
 
-    [actions.pauseAudio] : state => ({
+    [actions.playAudio] : state => ({
         ...state,
-        isPlaying: false
+        isPlaying: true
     }),
+
+    [actions.pauseAudio] : state => {
+        return ({
+            ...state,
+            isPlaying: false
+        })
+    },
 
     [actions.audioLoaded] : state => ({
         ...state,
         isLoading: false
+    }),
+
+    [actions.changeVolume] : (state, action) => ({
+        ...state,
+        volume: action.payload
     }),
 
 

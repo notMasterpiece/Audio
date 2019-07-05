@@ -10,18 +10,18 @@ const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 
-const PlayPanelVolume = ({volume, changeVolume, defaultValue}) => {
+const PlayPanelVolume = ({volume, setVolume}) => {
     return (
         <Fragment>
             <SliderWithTooltip
                 value={volume}
-                onChange={value => changeVolume(value)}
+                onChange={value => setVolume(value)}
                 tipFormatter={value => `${value}%`}
             />
 
             <div
                 className="jp-volume-image"
-                onClick={(volume > 0) ? () => changeVolume(0) : () => changeVolume(defaultValue)}
+                // onClick={(volume > 0) ? () => changeVolume(0) : () => changeVolume(defaultValue)}
             >
                 {volume > 0
                     ? <IoIosVolumeHigh size={30} color={'#909090'}/>
@@ -35,8 +35,7 @@ const PlayPanelVolume = ({volume, changeVolume, defaultValue}) => {
 
 PlayPanelVolume.propTypes = {
     volume: PropTypes.number.isRequired,
-    changeVolume: PropTypes.func.isRequired,
-    defaultValue: PropTypes.number.isRequired,
+    setVolume: PropTypes.func.isRequired,
 };
 
 export default PlayPanelVolume;

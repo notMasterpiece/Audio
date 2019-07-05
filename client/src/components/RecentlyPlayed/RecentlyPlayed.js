@@ -14,8 +14,8 @@ const RecentlyPlayed = ({player}) => {
         loop: false,
         speed: 1500,
         navigation: {
-            nextEl: '.swiper-button-next5',
-            prevEl: '.swiper-button-prev5',
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
         breakpoints: {
             1800: {

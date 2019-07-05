@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PlayPanelVolume from './PlayPanelVolume';
+import PlayPanelVolume from './volume/PlayPanelVolumeContainer';
 import {IoMdRepeat} from "react-icons/io";
 
 const PlayPanelRight = ({

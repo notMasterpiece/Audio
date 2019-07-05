@@ -233,3 +233,35 @@ a {
     height: 28px;
   }
 }
+
+
+@media screen and (max-width: 992px){
+  body .ms_content_wrapper {
+    margin: 0 15px;
+  }
+  body .ms_header {
+    padding: 15px;
+    left: 0;
+  }
+  body .ms_top_right {
+    display: none;
+  }
+  body .czzyan,
+  body .jp-volume-wrap {
+    display: none;
+  }
+  body .ms_sidemenu_wrapper {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px){
+  body .ms_rcnt_box {
+    max-width: 100%;
+    margin: 0 30px;
+  }
+  body .ms_rcnt_box_img {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import './audioItem.scss';
 import { IoMdHeartEmpty, IoIosPlay, IoIosPause } from "react-icons/io";
 
-import {pauseAudio, playAudio} from '../../modules/audio/audioAction';
+import {pauseAudio, playAudioById} from '../../modules/audio/audioAction';
 import {connect} from 'react-redux';
 
 const AudioItem = ({audio, dispatch, player, listId}) => {
@@ -38,7 +38,7 @@ const AudioItem = ({audio, dispatch, player, listId}) => {
                                     :   <IoIosPlay
                                             size={24}
                                             color={'white'}
-                                            onClick={() => dispatch(playAudio({id, listId}))}
+                                            onClick={() => dispatch(playAudioById({id, listId}))}
                                          />
                             }
 

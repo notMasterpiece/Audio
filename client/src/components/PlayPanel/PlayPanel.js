@@ -27,7 +27,6 @@ const PlayPanel = ({
     changeVolume,
     currentTime,
     handleAudioLoop,
-    setAudioDuration,
 
     togglePlayPanel,
     showPlayPanel,
@@ -58,7 +57,8 @@ const PlayPanel = ({
 
                         <PlayPanelProgressBar
                             audio={audio}
-                            setAudioDuration={setAudioDuration}
+                            duration={duration}
+                            currentTime={currentTime}
                         />
 
                         <PlayPanelAudioInfo
